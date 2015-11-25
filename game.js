@@ -1,5 +1,8 @@
 window.onload = function(){
   cc.game.onStart = function(){
+    cc.view.adjustViewPort(true);
+    cc.view.setDesignResolutionSize(450,800,cc.ResolutionPolicy.SHOW_ALL);
+    cc.view.resizeWithBrowserSize(true);
     cc.LoaderScene.preload(["HelloWorld.png"], function () {
       var MyScene = cc.Scene.extend({
         ctor:function(){
