@@ -23,12 +23,12 @@ window.onload = function(){
 
           var bg = new cc.Sprite(res.Background);  
           bg.x = size.width/2;  
-          bg.y = size.height/2;  
+          bg.y = 1250; 
           this.addChild(bg, 0, 0);  
 
           var ball = new cc.Sprite(res.Player);
           ball.x = size.width/2;
-          ball.y = size.height/2;
+          ball.y = size.height/4;
           this.addChild(ball,10);
 
           var ballPosition = 0;
@@ -44,12 +44,12 @@ window.onload = function(){
                     var p0 = ball.getPosition();
                                    
   
-                    if(acc.x > -0.4 && acc.x < 0.4)
+                    if(acc.x > -0.35 && acc.x < 0.35)
                     {
                       ballState = true;
                     }
 
-                    if(acc.x < -0.5 && ballState)
+                    if(acc.x < -0.4 && ballState)
                     {
                       if(ballPosition != -1)
                       {
@@ -58,7 +58,7 @@ window.onload = function(){
                       ballState = false;
                     }
 
-                    if(acc.x > 0.5 && ballState)
+                    if(acc.x > 0.4 && ballState)
                     {
                       if(ballPosition != 1)
                       {
@@ -68,7 +68,7 @@ window.onload = function(){
                     }
 
                     var p1x = 0;
-                    var p1y = size.height/2;
+                    var p1y = p0.y;
                     if(ballPosition === 0)
                     {
                       p1x = size.width/2;
@@ -100,6 +100,12 @@ window.onload = function(){
                     ball.runAction(cc.place(cc.p( p1x, p1y))); 
                 }  
             }, ball);  
+            this.schedule(function(f){
+              if(bg.getPosition().y > -450)
+                bg.y = bg.getPosition().y - 0.5;
+              else if(ball.getPosition().y < 600)
+                ball.y = ball.getPosition().y + 0.5;
+            });
         }
       });
       cc.director.runScene(new MyScene());
