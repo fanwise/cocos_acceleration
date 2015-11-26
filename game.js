@@ -26,7 +26,7 @@ window.onload = function(){
           bg.y = size.height/2;  
           this.addChild(bg, 0, 0);  
 
-          var ball = new cc.Sprite(res.Ball);
+          var ball = new cc.Sprite(res.Player);
           ball.x = size.width/2;
           ball.y = size.height/2;
           this.addChild(ball,10);
