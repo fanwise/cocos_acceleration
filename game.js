@@ -31,6 +31,9 @@ window.onload = function(){
           ball.y = size.height/2;
           this.addChild(ball,10);
 
+          var ballPosition = 0;
+          var ballState = false; 
+
           cc.inputManager.setAccelerometerEnabled(true);
           
             cc.eventManager.addListener({
@@ -38,25 +41,62 @@ window.onload = function(){
                 callback: function(acc, event){ 
                     var size = cc.director.getWinSize();  
                     var s = ball.getContentSize();
-                    var p0 = ball.getPosition();  
+                    var p0 = ball.getPosition();
+                                   
+  
+                    if(acc.x > -0.4 && acc.x < 0.4)
+                    {
+                      ballState = true;
+                    }
+
+                    if(acc.x < -0.5 && ballState)
+                    {
+                      if(ballPosition != -1)
+                      {
+                        ballPosition--;
+                      }
+                      ballState = false;
+                    }
+
+                    if(acc.x > 0.5 && ballState)
+                    {
+                      if(ballPosition != 1)
+                      {
+                        ballPosition++;
+                      }
+                      ballState = false;
+                    }
+
+                    var p1x = 0;
+                    var p1y = size.height/2;
+                    if(ballPosition === 0)
+                    {
+                      p1x = size.width/2;
+                    }else if(ballPosition === 1){
+                      p1x = size.width*3/4;
+                    }else if(ballPosition === -1){
+                      p1x = size.width/4;
+                    }
+
+
+
+  
+                    // var p1x =  p0.x + acc.x * SPEED ;  
+                    // if ((p1x - s.width/2) <0) {  
+                    //     p1x = s.width/2;
+                    // }  
+                    // if ((p1x + s.width / 2) > size.width) {
+                    //     p1x = size.width - s.width / 2; 
+                    // }  
   
   
-                    var p1x =  p0.x + acc.x * SPEED ;  
-                    if ((p1x - s.width/2) <0) {  
-                        p1x = s.width/2;
-                    }  
-                    if ((p1x + s.width / 2) > size.width) {
-                        p1x = size.width - s.width / 2; 
-                    }  
-  
-  
-                    var p1y =  p0.y + acc.y * SPEED ;   
-                    if ((p1y - s.height/2) < 0) {  
-                        p1y = s.height/2;  
-                    }  
-                    if ((p1y + s.height/2) > size.height) {  
-                        p1y = size.height - s.height/2;  
-                    }  
+                    // var p1y =  p0.y + acc.y * SPEED ;   
+                    // if ((p1y - s.height/2) < 0) {  
+                    //     p1y = s.height/2;  
+                    // }  
+                    // if ((p1y + s.height/2) > size.height) {  
+                    //     p1y = size.height - s.height/2;  
+                    // }  
                     ball.runAction(cc.place(cc.p( p1x, p1y))); 
                 }  
             }, ball);  
