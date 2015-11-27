@@ -160,7 +160,7 @@ window.onload = function(){
 
               function Crash(player){
                 if(player.x == ball.x)
-                  if(player.y - ball.y < 80)
+                  if(player.y > ball.y && player.y - ball.y < 80)
                     Reset();
                     //stateLabel.setString("Death");
               }
