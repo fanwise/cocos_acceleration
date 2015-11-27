@@ -44,12 +44,12 @@ window.onload = function(){
                     var p0 = ball.getPosition();
                                    
   
-                    if(acc.x > -0.35 && acc.x < 0.35)
+                    if(acc.x > -0.28 && acc.x < 0.28)
                     {
                       ballState = true;
                     }
 
-                    if(acc.x < -0.4 && ballState)
+                    if(acc.x < -0.3 && ballState)
                     {
                       if(ballPosition != -1)
                       {
@@ -58,7 +58,7 @@ window.onload = function(){
                       ballState = false;
                     }
 
-                    if(acc.x > 0.4 && ballState)
+                    if(acc.x > 0.3 && ballState)
                     {
                       if(ballPosition != 1)
                       {
