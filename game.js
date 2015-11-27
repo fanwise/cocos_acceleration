@@ -32,7 +32,8 @@ window.onload = function(){
           this.addChild(ball,10);
 
           var stateLabel = new cc.LabelTTF("labelTTF", "Arial", 24);
-          stateLabel.setString("Alive");
+          var score = 0;
+          stateLabel.setString("Socre:"+score);
           this.addChild(stateLabel,15);
           stateLabel.setPosition(cc.p(100,750));
 
@@ -146,15 +147,15 @@ window.onload = function(){
 
                 anti4.x = size.width/4;
                 anti4.y = size.height - 640;
-
-                stateLabel.setString("Alive");
               }
 
               if(bg.getPosition().y > -450)
                 bg.y = bg.getPosition().y - 0.5;
-              else if(ball.getPosition().y < 600)
+              else if(ball.getPosition().y < 650)
                 ball.y = ball.getPosition().y + 0.5;
               else{
+                socre++;
+                stateLabel.setString("Socre:"+score);
                 Reset();
               }
 
