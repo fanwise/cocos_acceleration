@@ -31,6 +31,11 @@ window.onload = function(){
           ball.y = size.height/4;
           this.addChild(ball,10);
 
+          var stateLabel = new cc.LabelTTF("labelTTF", "Arial", 24);
+          stateLabel.setString("Alive");
+          this.addChild(stateLabel,15);
+          stateLabel.setPosition(cc.p(100,750));
+
           var anti = new cc.Sprite(res.Anti);
           anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
           anti.y = size.height - 40;
@@ -47,7 +52,7 @@ window.onload = function(){
           this.addChild(anti3,10);
 
           var anti4 = new cc.Sprite(res.Anti);
-          anti4.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+          anti4.x = size.width/4;
           anti4.y = size.height - 640;
           this.addChild(anti4,10);
 
@@ -121,20 +126,34 @@ window.onload = function(){
                 }  
             }, ball);  
             this.schedule(function(f){
-              if(bg.getPosition().y > -450)
-                bg.y = bg.getPosition().y - 0.5;
-              else if(ball.getPosition().y < 600)
-                ball.y = ball.getPosition().y + 0.5;
-              else{
+
+              function Reset(){
                 bg.x = size.width/2;  
                 bg.y = 1250;
 
                 ball.x = size.width/2;
                 ball.y = size.height/4;
+
+                stateLabel.setString("Alive");
               }
 
+              if(bg.getPosition().y > -450)
+                bg.y = bg.getPosition().y - 0.5;
+              else if(ball.getPosition().y < 600)
+                ball.y = ball.getPosition().y + 0.5;
+              else{
+                Reset();
+              }
+
+              function Crash(player){
+                if(player.x == ball.x)
+                  if(player.y - ball.y < 80)
+                    Reset();
+                    //stateLabel.setString("Death");
+              }
 
               anti.y = anti.getPosition().y - 1.5;
+              Crash(anti);
               if(anti.y < -40)
               {
                 anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
@@ -142,6 +161,7 @@ window.onload = function(){
               }
 
               anti2.y = anti2.getPosition().y - 1.5;
+              Crash(anti2);
               if(anti2.y < -40)
               {
                 anti2.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
@@ -149,6 +169,7 @@ window.onload = function(){
               }
 
               anti3.y = anti3.getPosition().y - 1.5;
+              Crash(anti3);
               if(anti3.y < -40)
               {
                 anti3.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
@@ -156,6 +177,7 @@ window.onload = function(){
               }
 
               anti4.y = anti4.getPosition().y - 1.5;
+              Crash(anti4);
               if(anti4.y < -40)
               {
                 anti4.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
