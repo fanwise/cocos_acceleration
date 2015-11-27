@@ -134,6 +134,19 @@ window.onload = function(){
                 ball.x = size.width/2;
                 ball.y = size.height/4;
 
+                anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti.y = size.height - 40;
+
+                anti2.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti2.y = size.height - 240;
+
+                anti3.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti3.y = size.height - 440;
+
+
+                anti4.x = size.width/4;
+                anti4.y = size.height - 640;
+
                 stateLabel.setString("Alive");
               }
 
