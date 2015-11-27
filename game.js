@@ -3,7 +3,7 @@ window.onload = function(){
     cc.view.adjustViewPort(true);
     cc.view.setDesignResolutionSize(450,800,cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);
-    cc.LoaderScene.preload(["HelloWorld.png"], function () {
+    cc.LoaderScene.preload(["HelloWorld.png",res.Background], function () {
       var MyScene = cc.Scene.extend({
         ctor:function(){
           this._super();
