@@ -36,6 +36,21 @@ window.onload = function(){
           anti.y = size.height - 40;
           this.addChild(anti,10);
 
+          var anti2 = new cc.Sprite(res.Anti);
+          anti2.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+          anti2.y = size.height - 240;
+          this.addChild(anti2,10);
+
+          var anti3 = new cc.Sprite(res.Anti);
+          anti3.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+          anti3.y = size.height - 440;
+          this.addChild(anti3,10);
+
+          var anti4 = new cc.Sprite(res.Anti);
+          anti4.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+          anti4.y = size.height - 640;
+          this.addChild(anti4,10);
+
           var ballPosition = 0;
           var ballState = false; 
 
@@ -117,6 +132,27 @@ window.onload = function(){
               {
                 anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
                 anti.y = size.height - 40;
+              }
+
+              anti2.y = anti2.getPosition().y - 1.5;
+              if(anti2.y < -40)
+              {
+                anti2.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti2.y = size.height - 40;
+              }
+
+              anti3.y = anti3.getPosition().y - 1.5;
+              if(anti3.y < -40)
+              {
+                anti3.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti3.y = size.height - 40;
+              }
+
+              anti4.y = anti4.getPosition().y - 1.5;
+              if(anti4.y < -40)
+              {
+                anti4.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti4.y = size.height - 40;
               }
             });
         }
