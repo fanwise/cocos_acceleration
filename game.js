@@ -154,7 +154,7 @@ window.onload = function(){
               else if(ball.getPosition().y < 650)
                 ball.y = ball.getPosition().y + 0.5;
               else{
-                socre++;
+                score++;
                 stateLabel.setString("Socre:"+score);
                 Reset();
               }
