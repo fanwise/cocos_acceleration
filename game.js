@@ -70,12 +70,12 @@ window.onload = function(){
                     var p0 = ball.getPosition();
                                    
   
-                    if(acc.x > -0.28 && acc.x < 0.28)
+                    if(acc.x > -0.24 && acc.x < 0.24)
                     {
                       ballState = true;
                     }
 
-                    if(acc.x < -0.3 && ballState)
+                    if(acc.x < -0.25 && ballState)
                     {
                       if(ballPosition != -1)
                       {
@@ -84,7 +84,7 @@ window.onload = function(){
                       ballState = false;
                     }
 
-                    if(acc.x > 0.3 && ballState)
+                    if(acc.x > 0.25 && ballState)
                     {
                       if(ballPosition != 1)
                       {
@@ -151,7 +151,7 @@ window.onload = function(){
 
               if(bg.getPosition().y > -450)
                 bg.y = bg.getPosition().y - 0.5;
-              else if(ball.getPosition().y < 650)
+              else if(ball.getPosition().y < 620)
                 ball.y = ball.getPosition().y + 0.5;
               else{
                 score++;
