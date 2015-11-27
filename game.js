@@ -8,7 +8,7 @@ window.onload = function(){
         ctor:function(){
           this._super();
 
-          cc.log("HelloWorld init")
+          cc.log("HelloWorld init");
 
 
 
@@ -30,6 +30,11 @@ window.onload = function(){
           ball.x = size.width/2;
           ball.y = size.height/4;
           this.addChild(ball,10);
+
+          var anti = new cc.Sprite(res.Anti);
+          anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+          anti.y = size.height - 40;
+          this.addChild(anti,10);
 
           var ballPosition = 0;
           var ballState = false; 
@@ -105,6 +110,14 @@ window.onload = function(){
                 bg.y = bg.getPosition().y - 0.5;
               else if(ball.getPosition().y < 600)
                 ball.y = ball.getPosition().y + 0.5;
+
+
+              anti.y = anti.getPosition().y - 1.5;
+              if(anti.y < -40)
+              {
+                anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
+                anti.y = size.height - 40;
+              }
             });
         }
       });
