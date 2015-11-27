@@ -125,6 +125,13 @@ window.onload = function(){
                 bg.y = bg.getPosition().y - 0.5;
               else if(ball.getPosition().y < 600)
                 ball.y = ball.getPosition().y + 0.5;
+              else{
+                bg.x = size.width/2;  
+                bg.y = 1250;
+
+                ball.x = size.width/2;
+                ball.y = size.height/4;
+              }
 
 
               anti.y = anti.getPosition().y - 1.5;
