@@ -37,6 +37,11 @@ window.onload = function(){
           this.addChild(stateLabel,15);
           stateLabel.setPosition(cc.p(100,750));
 
+          var fingerLabel = new cc.LabelTTF("labelTTF", "Arial", 24);
+          fingerLabel.setString("notTouch");
+          this.addChild(fingerLabel,15);
+          fingerLabel.setPosition(cc.p(100,700));
+
           var anti = new cc.Sprite(res.Anti);
           anti.x = size.width/2 + (Math.round(Math.random()*2)-1)*size.width/4;
           anti.y = size.height - 40;
@@ -61,6 +66,35 @@ window.onload = function(){
           var ballState = false; 
 
           cc.inputManager.setAccelerometerEnabled(true);
+
+
+          cc.eventManager.addListener({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            swallowTouches: true,
+            onTouchBegan: function (touch, event) {
+                fingerLabel.setString("Touched");
+                this.touchLaction = touch.getLocation();
+                return true;
+            },
+            onTouchMoved: function (touch, event) {
+                fingerLabel.setString("Moving");
+            },
+            onTouchEnded: function (touch, event) {
+              fingerLabel.setString("notTouch");
+
+                var touchEnd = touch.getLocation();
+                var delat = this.touchLaction.x - touchEnd.x;
+                //delat取50为边界，确保不会因为误操作而变动；
+                if (delat >= 50 || delat <= -50){
+                    if (delat < -50){
+                    }
+                    else if (delat >50){
+                       // cc.log("向左滑动咯")
+                    }
+                }
+            }
+        }, this);
+
           
             cc.eventManager.addListener({
                 event: cc.EventListener.ACCELERATION, 
