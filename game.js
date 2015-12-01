@@ -65,7 +65,7 @@ window.onload = function(){
           var ballPosition = 0;
           var ballState = false; 
 
-          cc.inputManager.setAccelerometerEnabled(true);
+          // cc.inputManager.setAccelerometerEnabled(true);
 
 
           cc.eventManager.addListener({
@@ -77,7 +77,7 @@ window.onload = function(){
                 return true;
             },
             onTouchMoved: function (touch, event) {
-                fingerLabel.setString("Moving");
+               fingerLabel.setString("Moving");
             },
             onTouchEnded: function (touch, event) {
               fingerLabel.setString("notTouch");
@@ -87,46 +87,19 @@ window.onload = function(){
                 //delat取50为边界，确保不会因为误操作而变动；
                 if (delat >= 50 || delat <= -50){
                     if (delat < -50){
-                    }
-                    else if (delat >50){
-                       // cc.log("向左滑动咯")
-                    }
-                }
-            }
-        }, this);
-
-          
-            cc.eventManager.addListener({
-                event: cc.EventListener.ACCELERATION, 
-                callback: function(acc, event){ 
-                    var size = cc.director.getWinSize();  
-                    var s = ball.getContentSize();
-                    var p0 = ball.getPosition();
-                                   
-  
-                    if(acc.x > -0.24 && acc.x < 0.24)
-                    {
-                      ballState = true;
-                    }
-
-                    if(acc.x < -0.25 && ballState)
-                    {
-                      if(ballPosition != -1)
-                      {
-                        ballPosition--;
-                      }
-                      ballState = false;
-                    }
-
-                    if(acc.x > 0.25 && ballState)
-                    {
                       if(ballPosition != 1)
                       {
                         ballPosition++;
                       }
-                      ballState = false;
+                    }
+                    else if (delat >50){
+                      if(ballPosition != -1)
+                      {
+                        ballPosition--;
+                      }
                     }
 
+                    var p0 = ball.getPosition();
                     var p1x = 0;
                     var p1y = p0.y;
                     if(ballPosition === 0)
@@ -137,29 +110,76 @@ window.onload = function(){
                     }else if(ballPosition === -1){
                       p1x = size.width/4;
                     }
+                    ball.runAction(cc.place(cc.p( p1x, p1y)));
+                }
+            }
+        }, this);
+
+          
+            // cc.eventManager.addListener({
+            //     event: cc.EventListener.ACCELERATION, 
+            //     callback: function(acc, event){ 
+            //         var size = cc.director.getWinSize();  
+            //         var s = ball.getContentSize();
+            //         var p0 = ball.getPosition();
+                                   
+  
+            //         if(acc.x > -0.24 && acc.x < 0.24)
+            //         {
+            //           ballState = true;
+            //         }
+
+            //         if(acc.x < -0.25 && ballState)
+            //         {
+            //           if(ballPosition != -1)
+            //           {
+            //             ballPosition--;
+            //           }
+            //           ballState = false;
+            //         }
+
+            //         if(acc.x > 0.25 && ballState)
+            //         {
+            //           if(ballPosition != 1)
+            //           {
+            //             ballPosition++;
+            //           }
+            //           ballState = false;
+            //         }
+
+            //         var p1x = 0;
+            //         var p1y = p0.y;
+            //         if(ballPosition === 0)
+            //         {
+            //           p1x = size.width/2;
+            //         }else if(ballPosition === 1){
+            //           p1x = size.width*3/4;
+            //         }else if(ballPosition === -1){
+            //           p1x = size.width/4;
+            //         }
 
 
 
   
-                    // var p1x =  p0.x + acc.x * SPEED ;  
-                    // if ((p1x - s.width/2) <0) {  
-                    //     p1x = s.width/2;
-                    // }  
-                    // if ((p1x + s.width / 2) > size.width) {
-                    //     p1x = size.width - s.width / 2; 
-                    // }  
+            //         // var p1x =  p0.x + acc.x * SPEED ;  
+            //         // if ((p1x - s.width/2) <0) {  
+            //         //     p1x = s.width/2;
+            //         // }  
+            //         // if ((p1x + s.width / 2) > size.width) {
+            //         //     p1x = size.width - s.width / 2; 
+            //         // }  
   
   
-                    // var p1y =  p0.y + acc.y * SPEED ;   
-                    // if ((p1y - s.height/2) < 0) {  
-                    //     p1y = s.height/2;  
-                    // }  
-                    // if ((p1y + s.height/2) > size.height) {  
-                    //     p1y = size.height - s.height/2;  
-                    // }  
-                    ball.runAction(cc.place(cc.p( p1x, p1y))); 
-                }  
-            }, ball);  
+            //         // var p1y =  p0.y + acc.y * SPEED ;   
+            //         // if ((p1y - s.height/2) < 0) {  
+            //         //     p1y = s.height/2;  
+            //         // }  
+            //         // if ((p1y + s.height/2) > size.height) {  
+            //         //     p1y = size.height - s.height/2;  
+            //         // }  
+            //         ball.runAction(cc.place(cc.p( p1x, p1y))); 
+            //     }  
+            // }, ball);  
             this.schedule(function(f){
 
               function Reset(){
