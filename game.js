@@ -9,6 +9,7 @@ window.onload = function(){
           this._super();
 
           cc.log("HelloWorld init");
+          cc.log(cc.container.width);
 
 
 
@@ -65,8 +66,37 @@ window.onload = function(){
           var ballPosition = 0;
           var ballState = false; 
 
-          // cc.inputManager.setAccelerometerEnabled(true);
+          cc.inputManager.setAccelerometerEnabled(true);
 
+          cc.eventManager.addListener({
+            event: cc.EventListener.ACCELERATION, 
+            callback: function(acc, event){ 
+
+                var pt = ball.getPosition();
+                var ptx;
+                                   
+                if(acc.x > -0.24 && acc.x < 0.24 && ballState)
+                {
+                    ptx = size.width/2;
+                    ballState = false;
+                }
+
+                if(acc.x < -0.25)
+                {
+                    ptx = size.width/4;
+                    ballState = true;
+                }
+
+                if(acc.x > 0.25)
+                {
+                    ptx = size.width*3/4;
+                    ballState = true;
+                }
+                var pty = pt.y;
+                if(ballState)
+                    ball.runAction(cc.place(cc.p( ptx, pty))); 
+            }  
+          }, ball);
 
           cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
