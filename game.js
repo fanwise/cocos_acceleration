@@ -74,10 +74,12 @@ window.onload = function(){
 
                 var pt = ball.getPosition();
                 var ptx;
+                var pty = pt.y;
                                    
                 if(acc.x > -0.24 && acc.x < 0.24 && ballState)
                 {
                     ptx = size.width/2;
+                    ball.runAction(cc.place(cc.p( ptx, pty)));
                     ballState = false;
                 }
 
@@ -92,7 +94,7 @@ window.onload = function(){
                     ptx = size.width*3/4;
                     ballState = true;
                 }
-                var pty = pt.y;
+                
                 if(ballState)
                     ball.runAction(cc.place(cc.p( ptx, pty))); 
             }  
